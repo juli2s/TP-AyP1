@@ -28,7 +28,7 @@ public class MyBrain extends Brain {
 		// completar con la lógica necesaria para mover la serpiente,
 		// intentando comer la mayor cantidad de frutas y sobrevivir
 		// el mayor tiempo posible.
-		
+		previous.turnLeft();
 		return previous.turnRight();
 	}
 }
