@@ -32,6 +32,14 @@ public class MyBrain extends Brain {
 		// intentando comer la mayor cantidad de frutas y sobrevivir
 		// el mayor tiempo posible.
 		
+	      if(hayPeligro(nextPoint)){
+	    	  girarDere;
+	    	  else{
+	    		  girarIzq;
+	    	  }
+	    		  
+	    	  
+	      }
 		return nextDirection;
 	}
 	
