@@ -14,7 +14,7 @@ public class MyBrain extends Brain {
 	// Pueden agregarse todos los atributos necesarios
 
 	public MyBrain() {
-		super("COMPLETAR NOMBRE DE EQUIPO");
+		super("NullPointerExeption");
 	}
 
 	/**
@@ -30,97 +30,51 @@ public class MyBrain extends Brain {
 		List<Point> snake = info.getSnake();
 		List<List<Point>> enemies = info.getEnemies();
 		List<Point> obstacles = info.getObstacles();
+		
 
 		// completar con la lÃ³gica necesaria para mover la serpiente,
 		// intentando comer la mayor cantidad de frutas y sobrevivir
 		// el mayor tiempo posible.
 
-		// Point anterior = nextPoint;
-		// aca creo una lista de posibles direcciones para empezar la partida
-
-		List<Direction> direcciones = new ArrayList<Direction>();
-		direcciones.add(Direction.DOWN);
-		direcciones.add(Direction.UP);
-		direcciones.add(Direction.LEFT);
-		direcciones.add(Direction.RIGHT);
-
-		// aca las mezclo de forma random
-		Collections.shuffle(direcciones);
-		// para empezar agarro la primer direccion que haya quedado en la lista
-		// que recien se mezclo
-		Direction nextDirection = direcciones.get(0);
-		// Point puntoSiguiente = obtenerSiguiente(snake.get(0), nextDirection);
-		Point nextPoint = head.clone();
-		nextPoint.moveTo(nextDirection);
-		System.out.println(nextDirection);
-		// si el movimiento es posible, lo hace sinó intenta con la siguiente
-		// direccion de la lista y así hasta completar las 4
-
+		// para empezar, la direccion siguiente es la misma que venía ( sigue
+		// derecho)
+		Direction direccionSiguiente = previous;
+		// el proximo punto, es un clon de la cabeza actual de la snake
+		Point siguientePunto = head.clone();
+		// movemos el proximo punto a la dirección siguiente y evaluamos si es
+		// seguro
+		siguientePunto.moveTo(direccionSiguiente);
+		System.out.println(siguientePunto.toString());
+		if (this.estaOcupado(siguientePunto)) {
+			// Si no es seguro, el proximo punto lo clonamos y lo movemos a la
+			// direccion siguente pero girando a la derecha.
 			
-		if (estaOcupado(nextPoint) == false) {
-				nextPoint = head.clone();
-				nextPoint.moveTo(nextDirection);
-				System.out.println(nextDirection);
-				System.out.println(nextPoint.toString());
-				if (estaOcupado(nextPoint)) {
-					nextDirection = (direcciones.get(1));
-					nextPoint.moveTo(nextDirection);
-					System.out.println(nextDirection);
-					System.out.println(nextPoint.toString());
-				} else if (estaOcupado(nextPoint)) {
-					nextDirection = (direcciones.get(2));
-					nextPoint.moveTo(nextDirection);
-					System.out.println(nextDirection);
-					System.out.println(nextPoint.toString());
-				} else if(estaOcupado(nextPoint)){
-					nextDirection = (direcciones.get(3));
-					nextPoint.moveTo(nextDirection);
-					System.out.println(nextDirection);
-					System.out.println(nextPoint.toString());
-				}else
-				{
-					return nextDirection;
-				}
-			}else {
-				nextDirection = nextDirection.turnLeft();
-				nextPoint.moveTo(nextDirection);
-				if(estaOcupado(nextPoint)){
-					nextDirection = nextDirection.turnRight();
-					nextPoint.moveTo(nextDirection);
-				}else{
-					throw new Error("esta ocupado");
-				}
+			siguientePunto.moveTo(previous.turnRight());
+			System.out.println(siguientePunto.toString());
+			// volvemos a evaluar, si no es seguro ir a la derecha, hacemos que
+			// vaya a la izquierda.
+			if (this.estaOcupado(siguientePunto)) {
+				direccionSiguiente = previous.turnLeft();
+			} else {
+				// en este caso como no puede ir para atras, la hacemos que siga
+				// y muera.
+				direccionSiguiente = previous;
 			}
+		}
+
+		return direccionSiguiente;
+
+	}
+	private void comer(Point frutaMasCercana,Point head){
 		
-	return nextDirection;
-
-	}
-
-	private Point obtenerSiguiente(Point actual, Direction direccion) {
-		Point siguiente;
-		if (direccion == Direction.RIGHT) {
-			siguiente = new Point(actual.getX() + 1, actual.getY());
-		} else if (direccion == Direction.LEFT) {
-			siguiente = new Point(actual.getX() - 1, actual.getY());
-		} else if (direccion == Direction.UP) {
-			siguiente = new Point(actual.getX(), actual.getY() + 1);
-		} else {
-			siguiente = new Point(actual.getX(), actual.getY() - 1);
-		}
-		return siguiente;
-	}
-
-	private boolean esMovimientoPosible(List<Point> snake, Point moverHacia,
-			Point anterior) {
-		if (moverHacia == anterior) {
-			return false;
-		}
-		for (Point cuerpo : info.getSnake()) {
-			if (cuerpo.equals(moverHacia)) {
-				return false;
-			}
-		}
-		return true;
+		/**
+		 * guardar las frutas en un array
+		 * ordenarlo de mas cercana a mas lejana
+		 * llamar a la primer pos y ese punto guardarlo en una variable nueva. 
+		 *  
+		 * 
+		 */
+		
 	}
 
 	private boolean estaOcupado(Point point) {
@@ -137,6 +91,12 @@ public class MyBrain extends Brain {
 
 		for (Point obst : info.getObstacles()) {
 			if ((obst.getX() == point.getX()) && (obst.getY() == point.getY())) {
+				return true;
+			}
+		}
+		// me fijo si al punto al que voy hay una parte de la propia snake
+		for (Point cuerpo : info.getSnake()) {
+			if (cuerpo.equals(point)) {
 				return true;
 			}
 		}
