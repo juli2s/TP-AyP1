@@ -37,24 +37,40 @@ Detalles de la partida:
 Detalles de la partida:
   Modo: NORMAL
   Numero de ronda: 1
-  Duracion: 4
+  Duracion: 13
   Puntajes:
-    COMPLETAR NOMBRE DE EQUIPO: 3
+    BrainV1 6778536: 12
+    BrainV1 1735031: 12
+    COMPLETAR NOMBRE DE EQUIPO: 8
 
 
 Detalles de la partida:
   Modo: NORMAL
   Numero de ronda: 1
-  Duracion: 2
+  Duracion: 259
   Puntajes:
-    COMPLETAR NOMBRE DE EQUIPO: 1
+    BrainV1 1676723: 343
+    BrainV1 5676576: 258
+    COMPLETAR NOMBRE DE EQUIPO: 2
 
 
 Detalles de la partida:
   Modo: NORMAL
   Numero de ronda: 1
-  Duracion: 18
+  Duracion: 6
   Puntajes:
-    COMPLETAR NOMBRE DE EQUIPO: 31
+    COMPLETAR NOMBRE DE EQUIPO: 5
+    BrainV1 8936930: 2
+    BrainV1 3809364: 2
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 954
+  Puntajes:
+    BrainV1 4234986: 3595
+    BrainV1 1700516: 2688
+    NullPointerExeption: 1036
 
 
