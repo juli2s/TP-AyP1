@@ -30,7 +30,6 @@ public class MyBrain extends Brain {
 		List<Point> snake = info.getSnake();
 		List<List<Point>> enemies = info.getEnemies();
 		List<Point> obstacles = info.getObstacles();
-		
 
 		// completar con la lÃ³gica necesaria para mover la serpiente,
 		// intentando comer la mayor cantidad de frutas y sobrevivir
@@ -43,38 +42,65 @@ public class MyBrain extends Brain {
 		Point siguientePunto = head.clone();
 		// movemos el proximo punto a la dirección siguiente y evaluamos si es
 		// seguro
-		siguientePunto.moveTo(direccionSiguiente);
-		System.out.println(siguientePunto.toString());
-		if (this.estaOcupado(siguientePunto)) {
-			// Si no es seguro, el proximo punto lo clonamos y lo movemos a la
-			// direccion siguente pero girando a la derecha.
+		
+		Point frutaMasCercana;
+		
+		 frutaMasCercana = this.obtenerFrutaMasCercana(fruits, siguientePunto);
+			if(frutaMasCercana.getX()== siguientePunto.getX()){
+				if(frutaMasCercana.getY()>siguientePunto.getY()){
+					direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.UP);
+				}else{
+					direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.DOWN);
+				}
 			
-			siguientePunto.moveTo(previous.turnRight());
-			System.out.println(siguientePunto.toString());
-			// volvemos a evaluar, si no es seguro ir a la derecha, hacemos que
-			// vaya a la izquierda.
-			if (this.estaOcupado(siguientePunto)) {
-				direccionSiguiente = previous.turnLeft();
-			} else {
-				// en este caso como no puede ir para atras, la hacemos que siga
-				// y muera.
-				direccionSiguiente = previous;
+			}else if(frutaMasCercana.getX()> siguientePunto.getX()){
+		
+				direccionSiguiente = this.obtenerDireccionPosible(siguientePunto,  Direction.RIGHT);
+			}else{
+				
+				direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.LEFT);
 			}
-		}
-
+				
+		
 		return direccionSiguiente;
 
 	}
-	private void comer(Point frutaMasCercana,Point head){
-		
-		/**
-		 * guardar las frutas en un array
-		 * ordenarlo de mas cercana a mas lejana
-		 * llamar a la primer pos y ese punto guardarlo en una variable nueva. 
-		 *  
-		 * 
-		 */
-		
+
+	private Direction obtenerDireccionPosible(Point siguientePunto,Direction direccionSugerida){
+		siguientePunto.moveTo(direccionSugerida);
+		if (this.estaOcupado(siguientePunto)) {
+			// Si no es seguro,lo movemos a la
+			// direccion siguente pero girando a la derecha.
+			siguientePunto.moveTo(direccionSugerida.turnRight());
+			direccionSugerida = direccionSugerida.turnRight();
+			// volvemos a evaluar, si no es seguro ir a la derecha, hacemos que
+			// vaya a la izquierda.
+			if (this.estaOcupado(siguientePunto)) {
+				direccionSugerida = direccionSugerida.turnLeft();
+			} 
+		}
+		return direccionSugerida;
+	}
+
+	private Point obtenerFrutaMasCercana(List<Point> frutas, Point puntoActual) {
+		Point frutaMasCercana = frutas.get(0);
+		int distanciaMenor = Math
+				.abs(frutas.get(0).getX() - puntoActual.getX())
+				+ Math.abs(frutas.get(0).getY() - puntoActual.getY());
+
+		for (Point fruta : frutas) {
+
+			int distancia = Math.abs(fruta.getX() - puntoActual.getX())
+					+ Math.abs(fruta.getY() - puntoActual.getY());
+			if (distancia < distanciaMenor) {
+				distanciaMenor = distancia;
+				frutaMasCercana = fruta;
+			}
+
+		}
+
+		return frutaMasCercana;
+
 	}
 
 	private boolean estaOcupado(Point point) {
