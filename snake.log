@@ -170,3 +170,51 @@ Detalles de la partida:
     NullPointerExeption: 999
 
 
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 91
+  Puntajes:
+    NullPointerExeption: 498
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 124
+  Puntajes:
+    BrainV1 8357222: 180
+    NullPointerExeption: 170
+    BrainV1 266408: 123
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 160
+  Puntajes:
+    BrainV1 1067385: 159
+    BrainV1 7158967: 159
+    NullPointerExeption: 87
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 161
+  Puntajes:
+    NullPointerExeption: 1005
+    BrainV1 9073875: 499
+    BrainV1 3280825: 389
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 160
+  Puntajes:
+    NullPointerExeption: 1331
+    BrainV1 322980: 137
+    BrainV1 106042: 78
+
+
