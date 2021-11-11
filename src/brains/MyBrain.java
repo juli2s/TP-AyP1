@@ -27,9 +27,6 @@ public class MyBrain extends Brain {
 	 */
 	public Direction getDirection(Point head, Direction previous) {
 		List<Point> fruits = info.getFruits();
-		List<Point> snake = info.getSnake();
-		List<List<Point>> enemies = info.getEnemies();
-		List<Point> obstacles = info.getObstacles();
 
 		// completar con la lógica necesaria para mover la serpiente,
 		// intentando comer la mayor cantidad de frutas y sobrevivir
@@ -48,17 +45,19 @@ public class MyBrain extends Brain {
 		 frutaMasCercana = this.obtenerFrutaMasCercana(fruits, siguientePunto);
 			if(frutaMasCercana.getX()== siguientePunto.getX()){
 				if(frutaMasCercana.getY()>siguientePunto.getY()){
-					direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.UP);
+					
+					direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.UP,previous);
 				}else{
-					direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.DOWN);
+					
+					direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.DOWN,previous);
 				}
 			
 			}else if(frutaMasCercana.getX()> siguientePunto.getX()){
 		
-				direccionSiguiente = this.obtenerDireccionPosible(siguientePunto,  Direction.RIGHT);
+				direccionSiguiente = this.obtenerDireccionPosible(siguientePunto,  Direction.RIGHT,previous);
 			}else{
 				
-				direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.LEFT);
+				direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.LEFT,previous);
 			}
 				
 		
@@ -66,7 +65,7 @@ public class MyBrain extends Brain {
 
 	}
 
-	private Direction obtenerDireccionPosible(Point siguientePunto,Direction direccionSugerida){
+	private Direction obtenerDireccionPosible(Point siguientePunto,Direction direccionSugerida,Direction previous){
 		siguientePunto.moveTo(direccionSugerida);
 		if (this.estaOcupado(siguientePunto)) {
 			// Si no es seguro,lo movemos a la
@@ -76,7 +75,12 @@ public class MyBrain extends Brain {
 			// volvemos a evaluar, si no es seguro ir a la derecha, hacemos que
 			// vaya a la izquierda.
 			if (this.estaOcupado(siguientePunto)) {
+				siguientePunto.moveTo(direccionSugerida.turnLeft());
 				direccionSugerida = direccionSugerida.turnLeft();
+				if(this.estaOcupado(siguientePunto)){
+					siguientePunto.moveTo(direccionSugerida.turnLeft());
+					direccionSugerida = direccionSugerida.turnLeft();
+				}
 			} 
 		}
 		return direccionSugerida;
