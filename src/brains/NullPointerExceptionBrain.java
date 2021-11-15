@@ -9,12 +9,12 @@ import edu.unlam.snake.brain.Brain;
 import edu.unlam.snake.engine.Direction;
 import edu.unlam.snake.engine.Point;
 
-public class MyBrain extends Brain {
+public class NullPointerExceptionBrain extends Brain {
 
 	// Pueden agregarse todos los atributos necesarios
 
-	public MyBrain() {
-		super("NullPointerExeption");
+	public NullPointerExceptionBrain() {
+		super("NullPointerException");
 	}
 
 	/**
@@ -43,6 +43,7 @@ public class MyBrain extends Brain {
 		Point frutaMasCercana;
 		
 		 frutaMasCercana = this.obtenerFrutaMasCercana(fruits, siguientePunto);
+		
 			if(frutaMasCercana.getX()== siguientePunto.getX()){
 				if(frutaMasCercana.getY()>siguientePunto.getY()){
 					
@@ -60,15 +61,23 @@ public class MyBrain extends Brain {
 				direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.LEFT,previous);
 			}
 				
-		
+		previous = direccionSiguiente;
 		return direccionSiguiente;
 
 	}
 
 	private Direction obtenerDireccionPosible(Point siguientePunto,Direction direccionSugerida,Direction previous){
+		System.out.println("primero "+direccionSugerida);
+		 siguientePunto.moveTo(direccionSugerida);
+		System.out.println(direccionSugerida == previous.reverse());
+	if(direccionSugerida == previous.reverse()){
+		direccionSugerida = direccionSugerida.reverse();
+		System.out.println("despues del reverse "+direccionSugerida);
 		siguientePunto.moveTo(direccionSugerida);
+		System.out.println("despues del reverse punto"+siguientePunto);
+	}
 		if (this.estaOcupado(siguientePunto)) {
-			// Si no es seguro,lo movemos a la
+			// Si no es seguro
 			// direccion siguente pero girando a la derecha.
 			siguientePunto.moveTo(direccionSugerida.turnRight());
 			direccionSugerida = direccionSugerida.turnRight();
@@ -83,6 +92,7 @@ public class MyBrain extends Brain {
 				}
 			} 
 		}
+		System.out.println("Segundo "+direccionSugerida);
 		return direccionSugerida;
 	}
 

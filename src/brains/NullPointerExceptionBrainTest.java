@@ -1,4 +1,9 @@
+/**
+* @author jdossantos
+*/
 package brains;
+
+import static org.junit.Assert.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,12 +12,19 @@ import edu.unlam.snake.engine.Point;
 import game.GameDifficulty;
 import game.GameMode;
 import game.GameStudent;
+import edu.unlam.snake.brain.Brain;
+import edu.unlam.snake.engine.Direction;
 
-public class App {
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class NullPointerExceptionBrainTest  {
+
 	public static void main(String[] args) {
 		GameMode gameMode = GameMode.NORMAL;
 		NullPointerExceptionBrain myBrain = new NullPointerExceptionBrain();
-		GameStudent.start(gameMode, 2, 2, GameDifficulty.EASY, obstacleMap(gameMode), myBrain);
+		GameStudent.start(gameMode, 2, 2, GameDifficulty.NORMAL, obstacleMap(gameMode), myBrain);
 		// Pueden probar multiples copias de su Brain o varias copias distintas enviado
 		// un array en vez del objeto
 	}
@@ -27,21 +39,19 @@ public class App {
 		}
 		return obstacles;
 	}
-}
 
-/**
- * Comandos:
- * 1 -> Aumenta movimientos / seg
- * 2 -> Disminuye movimientos / seg
- * 3 -> 20 movimientos / seg
- * 4 -> 4 movimientos / seg
- * 5 -> 1 movimiento / seg
- * P -> Pausa
- * R -> Siguiente ronda
- * + -> Aumentar zoom
- * - -> Disminuir zoom
- * 
- * Nota:
- * El juego empieza pausado (P)
- * Para salir de pausa deberán tocar (3), (4) o (5)
- */
+	@Test
+	public void obtenerFrutaMasCercana() {
+		GameMode gameMode = GameMode.NORMAL;
+		Point head = new Point();
+
+		NullPointerExceptionBrain myBrain = new NullPointerExceptionBrain();
+		System.out.println(head.toString());
+		
+		GameStudent.start(gameMode, 2, 2, GameDifficulty.NORMAL, obstacleMap(gameMode), myBrain);
+		
+		
+		
+	}
+
+}
