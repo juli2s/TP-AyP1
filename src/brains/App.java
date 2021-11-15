@@ -12,7 +12,7 @@ public class App {
 	public static void main(String[] args) {
 		GameMode gameMode = GameMode.NORMAL;
 		NullPointerExceptionBrain myBrain = new NullPointerExceptionBrain();
-		GameStudent.start(gameMode, 2, 2, GameDifficulty.EASY, obstacleMap(gameMode), myBrain);
+		GameStudent.start(gameMode, 2, 2, GameDifficulty.NORMAL, obstacleMap(gameMode), myBrain);
 		// Pueden probar multiples copias de su Brain o varias copias distintas enviado
 		// un array en vez del objeto
 	}

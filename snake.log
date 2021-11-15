@@ -312,3 +312,141 @@ Detalles de la partida:
     NullPointerException: 23
 
 
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 1001
+  Puntajes:
+    NullPointerException: 3956
+    BrainV2 6686977: 2920
+    BrainV2 4565224: 1001
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 1001
+  Puntajes:
+    NullPointerException: 1990
+    BrainV2 9134920: 1001
+    BrainV2 6140724: 8
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 2
+  Duracion: 117
+  Puntajes:
+    NullPointerException: 2297
+    BrainV2 9134920: 1011
+    BrainV2 6140724: 124
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 1001
+  Puntajes:
+    NullPointerException: 8686
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 2
+  Duracion: 52
+  Puntajes:
+    NullPointerException: 8947
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 3
+  Duracion: 1001
+  Puntajes:
+    NullPointerException: 15801
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 4
+  Duracion: 57
+  Puntajes:
+    NullPointerException: 16098
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 1001
+  Puntajes:
+    NullPointerException: 10514
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 2
+  Duracion: 165
+  Puntajes:
+    NullPointerException: 11813
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 289
+  Puntajes:
+    BrainV3 7135582: 4570
+    NullPointerException: 215
+    BrainV3 7574514: 125
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 37
+  Puntajes:
+    NullPointerException: 131
+    BrainV3 9272176: 18
+    BrainV3 9669019: 10
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 2
+  Duracion: 123
+  Puntajes:
+    BrainV3 9272176: 969
+    NullPointerException: 198
+    BrainV3 9669019: 10
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 78
+  Puntajes:
+    NullPointerException: 165
+    BrainV1 7746013: 117
+    BrainV1 593660: 77
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 100
+  Puntajes:
+    NullPointerException: 693
+    BrainV1 9792348: 57
+    BrainV1 8131157: 51
+
+
+Detalles de la partida:
+  Modo: NORMAL
+  Numero de ronda: 1
+  Duracion: 63
+  Puntajes:
+    NullPointerException: 300
+    BrainV1 3992467: 62
+    BrainV1 1201839: 41
+
+
