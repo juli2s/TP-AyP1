@@ -39,60 +39,81 @@ public class NullPointerExceptionBrain extends Brain {
 		Point siguientePunto = head.clone();
 		// movemos el proximo punto a la dirección siguiente y evaluamos si es
 		// seguro
-		
+
 		Point frutaMasCercana;
-		
-		 frutaMasCercana = this.obtenerFrutaMasCercana(fruits, siguientePunto);
-		
-			if(frutaMasCercana.getX()== siguientePunto.getX()){
-				if(frutaMasCercana.getY()>siguientePunto.getY()){
-					
-					direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.UP,previous);
-				}else{
-					
-					direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.DOWN,previous);
-				}
-			
-			}else if(frutaMasCercana.getX()> siguientePunto.getX()){
-		
-				direccionSiguiente = this.obtenerDireccionPosible(siguientePunto,  Direction.RIGHT,previous);
-			}else{
-				
-				direccionSiguiente = this.obtenerDireccionPosible(siguientePunto, Direction.LEFT,previous);
+
+		frutaMasCercana = this.obtenerFrutaMasCercana(fruits, siguientePunto);
+
+		if (frutaMasCercana.getX() == siguientePunto.getX()) {
+			if (frutaMasCercana.getY() > siguientePunto.getY()) {
+
+				direccionSiguiente = this.obtenerDireccionPosible(
+						siguientePunto, Direction.UP, previous);
+			} else {
+
+				direccionSiguiente = this.obtenerDireccionPosible(
+						siguientePunto, Direction.DOWN, previous);
 			}
-				
+
+		} else if (frutaMasCercana.getX() > siguientePunto.getX()) {
+
+			direccionSiguiente = this.obtenerDireccionPosible(siguientePunto,
+					Direction.RIGHT, previous);
+		} else {
+
+			direccionSiguiente = this.obtenerDireccionPosible(siguientePunto,
+					Direction.LEFT, previous);
+		}
+
 		previous = direccionSiguiente;
 		return direccionSiguiente;
 
 	}
 
-	private Direction obtenerDireccionPosible(Point siguientePunto,Direction direccionSugerida,Direction previous){
-		System.out.println("primero "+direccionSugerida);
-		 siguientePunto.moveTo(direccionSugerida);
-		System.out.println(direccionSugerida == previous.reverse());
-	if(direccionSugerida == previous.reverse()){
-		direccionSugerida = direccionSugerida.reverse();
-		System.out.println("despues del reverse "+direccionSugerida);
+	private Direction obtenerDireccionPosible(Point siguientePunto,
+			Direction direccionSugerida, Direction previous) {
+		Point head = siguientePunto;
 		siguientePunto.moveTo(direccionSugerida);
-		System.out.println("despues del reverse punto"+siguientePunto);
-	}
-		if (this.estaOcupado(siguientePunto)) {
-			// Si no es seguro
-			// direccion siguente pero girando a la derecha.
-			siguientePunto.moveTo(direccionSugerida.turnRight());
-			direccionSugerida = direccionSugerida.turnRight();
-			// volvemos a evaluar, si no es seguro ir a la derecha, hacemos que
-			// vaya a la izquierda.
-			if (this.estaOcupado(siguientePunto)) {
-				siguientePunto.moveTo(direccionSugerida.turnLeft());
-				direccionSugerida = direccionSugerida.turnLeft();
-				if(this.estaOcupado(siguientePunto)){
-					siguientePunto.moveTo(direccionSugerida.turnLeft());
-					direccionSugerida = direccionSugerida.turnLeft();
-				}
-			} 
+
+		if (direccionSugerida == previous.reverse()) {
+			direccionSugerida = direccionSugerida.reverse();
+
+			siguientePunto.moveTo(direccionSugerida);
+
 		}
-		System.out.println("Segundo "+direccionSugerida);
+		if (this.estaOcupado(siguientePunto)) {
+			if (direccionSugerida == Direction.UP
+					|| direccionSugerida == Direction.DOWN) {
+				siguientePunto = head;
+				siguientePunto.moveTo(Direction.RIGHT);
+				if (this.estaOcupado(siguientePunto)) {
+					siguientePunto = head;
+					siguientePunto.moveTo(Direction.LEFT);
+					if (this.estaOcupado(siguientePunto)) {
+						direccionSugerida = previous;
+					} else {
+						direccionSugerida = Direction.LEFT;
+					}
+				} else {
+					direccionSugerida = Direction.RIGHT;
+				}
+			} else if (direccionSugerida == Direction.RIGHT
+					|| direccionSugerida == Direction.LEFT) {
+				siguientePunto = head;
+				siguientePunto.moveTo(Direction.UP);
+				if (this.estaOcupado(siguientePunto)) {
+					siguientePunto = head;
+					siguientePunto.moveTo(Direction.DOWN);
+					if (this.estaOcupado(siguientePunto)) {
+						direccionSugerida = previous;
+					} else {
+						direccionSugerida = Direction.DOWN;
+					}
+				} else {
+					direccionSugerida = Direction.UP;
+				}
+			}
+		}
 		return direccionSugerida;
 	}
 
